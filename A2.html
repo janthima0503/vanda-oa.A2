@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สินค้าปริ้นเตอร์ ทั้งหมด 8 ยี่ห้อ - VANDA OA</title>
+    <!-- นำเข้าฟอนต์ Prompt เพื่อความสวยงาม ทันสมัย -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        /* --- 1. Header & Navigation --- */
+        header {
+            background-color: #0b4f6c; /* สีน้ำเงินเข้มตามภาพ */
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 5%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 50px; /* สำหรับใส่โลโก้จริง */
+            background-color: #fff;
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            font-weight: 300;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+        /* --- Page Title Section --- */
+        .page-header {
+            background: linear-gradient(rgba(11, 79, 108, 0.85), rgba(11, 79, 108, 0.85)), 
+                        url('https://images.unsplash.com/photo-1612815150356-4297174b105d?auto=format&fit=crop&w=1200&q=80') center/cover;
+            color: #ffffff;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .page-header h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* --- Product Section Container --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* --- Product Grid Layout --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- Product Card Styling --- */
+        .product-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        /* รูปภาพสินค้า */
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 15px;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Badge แสดงแบรนด์ */
+        .brand-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: #0b4f6c;
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* รายละเอียดสินค้า */
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .product-specs {
+            font-size: 0.85rem;
+            color: #666;
+            list-style: none;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .product-specs li {
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .product-specs li::before {
+            content: "•";
+            color: #e62429;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #e62429;
+        }
+
+        .btn-detail {
+            background-color: #0b4f6c;
+            color: #ffffff;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .btn-detail:hover {
+            background-color: #08384d;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #333;
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+         .search-container {
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 2px 4px 2px 12px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .search-input {
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 6px 0;
+            font-size: 0.85rem;
+            background: transparent;
+        }
+
+        .search-btn {
+            background-color: #e62429;
+            color: #ffffff;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .search-btn:hover {
+            background-color: #c01e23;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+     <header>
+        <div class="logo-container">
+         <img src="https://media.tarad.com/v/vandaoa/img-lib/bns_20120410132659_th.JPG" alt="Vanda OA Logo" class="logo-img">   
+            <div class="logo-text">
+                <h1>VANDA OA</h1>
+                <span>บริษัท แวนด้า โอเอ จำกัด</span>
+            </div>
+        </div>
+
+          <!-- เพิ่มช่องค้นหาสินค้าตรงนี้ -->
+        <div class="search-container">
+            <input type="text" placeholder="ค้นหาสินค้า..." class="search-input">
+            <button class="search-btn">ค้นหา</button>
+        </div>
+    </style>
+</head>
+<body>
+
+        <nav>
+             <ul>
+                <li><a href="file:///C:/Users/User/Documents/Jamthima/index.html#">หน้าแรก</a></li>
+                <li><a href="file:///C:/Users/User/Documents/Jamthima/A12.html">สินค้า</a></li>
+                <li><a href="file:///C:/Users/User/Documents/Jamthima/A9.html">FAQ</a></li>
+                <li><a href="file:///C:/Users/User/Documents/Jamthima/A10.html">เกี่ยวกับเรา</a></li>
+                <li><a href="file:///C:/Users/User/Documents/Jamthima/A11.html">ติดต่อ</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Page Header Banner -->
+    <section class="page-header">
+        <h2>เครื่องปริ้นเตอร์คุณภาพสูง 8 แบรนด์ชั้นนำ</h2>
+        <p>ซ่อมและจำหน่าย เครื่องปริ้นเตอร์ เครื่องถ่ายเอกสาร พร้อมบริการหลังการขายมืออาชีพ</p>
+    </section>
+
+    <!-- Container สินค้า -->
+    <main class="container">
+        <div class="product-grid">
+
+            <!-- ยี่ห้อที่ 1: EPSON -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="brand-badge">EPSON</span>
+                    <img src="https://media.tarad.com/v/vandaoa/img-lib/spd_20200710161132_b.jpg" alt="Epson EcoTank L3250">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">EPSON LQ590 มือสอง</h3>
+                    <ul class="product-specs">
+                        <li>ความเร็วในการพิมพ์: สูงสุดประมาณ 529 ตัวอักษรต่อวินาที</li>
+                        <li>ความละเอียด: 360 × 360 จุดต่อตารางนิ้ว</li>
+                        <li>การเชื่อมต่อ:  พอร์ต Parallel และ USB</li>
+                        <li>พิมพ์งานต่อเนื่อง</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">฿3,500</div>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <!-- ยี่ห้อที่ 2: EPSON -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="brand-badge">EPSON</span>
+                    <img src="https://media.tarad.com/v/vandaoa/img-lib/spd_20200710160923_b.jpg" alt="Canon PIXMA G3730">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">EPSON LQ300+II มือสอง</h3>
+                    <ul class="product-specs">
+                        <li>ความเร็วในการพิมพ์: สูงสุด 300 ตัวอักษรต่อวินาที</li>
+                        <li>การทำสำเนา: พิมพ์ได้ครั้งละ 4 แผ่น</li>
+                        <li>ความละเอียดในการพิมพ์: 360 × 360 จุดต่อนิ้ว (dpi)</li>
+                        <li>การเชื่อมต่อ: รองรับครบทั้ง USB, Parallel, และ Serial interface</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">฿2,000</div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- ยี่ห้อที่ 3: EPSON -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="brand-badge">EPSON</span>
+                    <img src="https://media.tarad.com/v/vandaoa/img-lib/spd_94351fffcc_b.jpg" alt="Brother DCP-T720DW">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">PRINTER EPSON LQ 2090 มือสอง</h3>
+                    <ul class="product-specs">
+                        <li>ความเร็วในการพิมพ์: สูงสุด 440 ตัวอักษรต่อวินาที  (Auto Duplex)</li>
+                        <li>การทำสำเนา: พิมพ์ได้ครั้งละ 5 แผ่น</li>
+                        <li>ความทนทานหัวพิมพ์: อายุการใช้งานยาวนานถึง 400 ล้านตัวอักษร</li>
+                        <li>พอร์ตการเชื่อมต่อ: รองรับพอร์ต USB และ Parallel (LPT)</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">฿2,500</div>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <!-- ยี่ห้อที่ 4: EPSON -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="brand-badge">EPSON</span>
+                    <img src="https://media.tarad.com/v/vandaoa/img-lib/spd_459b10182b_b.jpg" alt="HP Smart Tank 580">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">EPSON WORKFORCE AL-M400 มือสอง</h3>
+                    <ul class="product-specs">
+                        <li>ฟังก์ชัน:พิมพ์ 2 หน้าอัตโนมัติ มีระบบพลิกกระดาษพิมพ์หน้า-หลังให้อัตโนมัติ </li>
+                        <li>ความเร็วในการพิมพ์: สูงถึง 45 หน้าต่อนาที (ppm) สำหรับขนาด A4</li>
+                        <li>ความละเอียด: สูงสุด 1,200 x 1,200 dpi ให้ตัวอักษรและลายเส้นที่คมชัดสูง</li>
+                        <li>การเชื่อมต่อ: ใช้สายแลน (LAN) หรือสาย USB 2.0</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">฿2,500</div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- ยี่ห้อที่ 5: RICOH -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="brand-badge">EPSON</span>
+                    <img src="https://media.tarad.com/v/vandaoa/img-lib/spd_20200710162116_b.jpg" alt="Ricoh M C2000">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">EPSON LQ310 (มือสอง)</h3>
+                    <ul class="product-specs">
+                        <li>ความเร็วในการพิมพ์: สูงถึง 416 ตัวอักษรต่อวินาที</li>
+                        <li>การทำสำเนา: พิมพ์ได้ครั้งละ 4 แผ่น</li>
+                        <li>ความทนทาน (MTBF): สูงถึง 10,000 ชั่วโมง รองรับงานหนักได้ดีเยี่ยม</li>
+                        <li>การเชื่อมต่อ: พอร์ต USB 2.0 Full-Speed,Parallel,Serial (RS-232C) </li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">฿3,000</div>
+                    
+                    </div>
+                </div>
+            </div>
+
+          <!-- ยี่ห้อที่ 6: RICOH -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="brand-badge">EPSON</span>
+                    <img src="https://media.tarad.com/v/vandaoa/img-lib/spd_20200710161624_b.jpg" alt="Ricoh M C2000">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">EPSON LQ2190 (มือสอง)</h3>
+                    <ul class="product-specs">
+                        <li>ความเร็วในการพิมพ์: สูงสุด 576 ตัวอักษรต่อวินาที หรือ 480 ตัวอักษรต่อวินาที </li>
+                        <li>การทำสำเนา: พิมพ์ได้ครั้งละ 6 แผ่น</li>
+                        <li>ระดับเสียง: ประมาณ 55 เดซิเบล</li>
+                        <li>การเชื่อมต่อ: USB 2.0 และ Bi-directional Parallel Interface</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">฿4,500</div>
+                    
+                    </div>
+                </div>
+            </div>
+
+             <!-- ยี่ห้อที่ 6: RICOH -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="brand-badge">EPSON</span>
+                    <img src="https://media.tarad.com/v/vandaoa/img-lib/spd_e9c1a320c5_b.jpg" alt="Ricoh M C2000">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">EPSON LQ630 (มือสอง)</h3>
+                    <ul class="product-specs">
+                        <li>ความเร็วในการพิมพ์: สูงสุด 360 ตัวอักษร/วินาที</li>
+                        <li>การทำสำเนา: พิมพ์ได้ครั้งละ 5 แผ่น</li>
+                        <li>ความทนทานหัวพิมพ์: 400 ล้านครั้ง/เข็ม</li>
+                        <li>การเชื่อมต่อ: USB 2.0 Type B และ Bidirectional Parallel</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">฿2,500</div>
+                    
+                    </div>
+                </div>
+            </div>
+
+            <!-- ยี่ห้อที่ 7: RICOH -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="brand-badge">EPSON</span>
+                    <img src="https://media.tarad.com/v/vandaoa/img-lib/spd_f215f05801_b.jpg" alt="Ricoh M C2000">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">PRINTER EPSON LQ 2090 II (NEW) </h3>
+                    <ul class="product-specs">
+                        <li>ความเร็วในการพิมพ์: ความเร็วสูงสุด 550 ตัวอักษรต่อวินาที</li>
+                        <li>การทำสำเนา: พิมพ์สำเนาได้สูงสุด 7 ชั้น </li>
+                        <li>รองรับการเชื่อมต่อ USB 2.0 และ Parallel</li>
+                        <li>ใช้ตลับผ้าหมึก Ribbon รุ่น S015586</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">฿7,000</div>
+                    
+                    </div>
+                </div>
+            </div>
+
+            <!-- ยี่ห้อที่ 8: RICOH -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="brand-badge">EPSON</span>
+                    <img src="https://media.tarad.com/v/vandaoa/img-lib/spd_2014051591548_b.jpg" alt="Ricoh M C2000">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">EPSON LQ310 (NEW)</h3>
+                    <ul class="product-specs">
+                        <li>ความเร็วในการพิมพ์: สูงถึง 416 ตัวอักษรต่อวินาที</li>
+                        <li>การทำสำเนา: พิมพ์ได้ครั้งละ 4 แผ่น</li>
+                        <li>ความทนทาน (MTBF): สูงถึง 10,000 ชั่วโมง รองรับงานหนักได้ดีเยี่ยม</li>
+                        <li>การเชื่อมต่อ: พอร์ต USB 2.0 Full-Speed,Parallel,Serial (RS-232C) </li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">฿8,000</div>
+                    
+                    </div>
+                </div>
+            </div>
+
+
+             <!-- ยี่ห้อที่ 8: RICOH -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="brand-badge">EPSON</span>
+                    <img src="https://media.tarad.com/v/vandaoa/img-lib/spd_2014051591548_b.jpg" alt="Ricoh M C2000">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">PRINTER EPSON LQ2090 (NEW)</h3>
+                    <ul class="product-specs">
+                       <li>ความเร็วในการพิมพ์: ความเร็วสูงสุด 550 ตัวอักษรต่อวินาที</li>
+                        <li>การทำสำเนา: พิมพ์สำเนาได้สูงสุด 7 ชั้น </li>
+                        <li>รองรับการเชื่อมต่อ USB 2.0 และ Parallel</li>
+                        <li>ใช้ตลับผ้าหมึก Ribbon รุ่น S015586</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">฿17,900</div>
+                    
+                    </div>
+                </div>
+            </div>
+
+
+             <!-- ยี่ห้อที่ 8: RICOH -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="brand-badge">EPSON</span>
+                    <img src="https://media.tarad.com/v/vandaoa/img-lib/spd_2014051591548_b.jpg" alt="Ricoh M C2000">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">EPSON LQ2190 (NEW)</h3>
+                    <ul class="product-specs">
+                        <li>ความเร็วในการพิมพ์: สูงสุด 576 ตัวอักษรต่อวินาที หรือ 480 ตัวอักษรต่อวินาที </li>
+                        <li>การทำสำเนา: พิมพ์ได้ครั้งละ 6 แผ่น</li>
+                        <li>ระดับเสียง: ประมาณ 55 เดซิเบล</li>
+                        <li>การเชื่อมต่อ: USB 2.0 และ Bi-directional Parallel Interface</li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">฿25,000</div>
+                    
+                    </div>
+                </div>
+            </div>
+
+
+             <!-- ยี่ห้อที่ 8: RICOH -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="brand-badge">EPSON</span>
+                    <img src="https://media.tarad.com/v/vandaoa/img-lib/spd_20150218104129_b.jpg" alt="Ricoh M C2000">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Printer EPSON LQ 590  (NEW)</h3>
+                    <ul class="product-specs">
+                        <li>ความเร็วสูงสุด: 529 ตัวอักษรต่อวินาที</li>
+                        <li>การทำสำเนา: พิมพ์ได้ครั้งละ 5 แผ่น</li>
+                        <li>ความละเอียด: 360 x 360 จุดต่อตารางนิ้ว</li>
+                        <li>การเชื่อมต่อ: พอร์ต USB และ Parallel (LPT) </li>
+                    </ul>
+                    <div class="product-footer">
+                        <div class="product-price">฿16,500</div>
+                    
+                    </div>
+                </div>
+            </div>
+
+
+           
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy;บริษัท แวนด้า โอเอ จำกัด </p>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.product-card').forEach(card => {
+          card.style.cursor = 'pointer';
+          card.addEventListener('click', () => {
+            window.location.href = 'file:///C:/Users/User/Documents/Jamthima/A11.html'; // ใส่ชื่อไฟล์หรือ URL หน้าติดต่อตรงนี้
+          });
+        });
+        const logo = document.querySelector('.logo-container'); // หรือเปลี่ยนเป็นคลาสรูปโลโก้ของคุณ เช่น .logo
+        if (logo) {
+          logo.style.cursor = 'pointer';
+          logo.addEventListener('click', () => {
+            window.location.href = 'index.html'; // ลิงก์ไปหน้าแรก (ใส่ชื่อไฟล์หน้าหลักของคุณ)
+          });
+        }
+      });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ดึง Element ช่องค้นหา ปุ่ม และ การ์ดสินค้า
+            const searchInput = document.querySelector('.search-input');
+            const searchBtn = document.querySelector('.search-btn');
+            const productCards = document.querySelectorAll('.product-card');
+
+            // ฟังก์ชันสำหรับกรองสินค้า
+            function filterProducts() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+
+                productCards.forEach(card => {
+                    // ดึงข้อความจากชื่อสินค้า สเปก และราคา
+                    const textContent = card.textContent.toLowerCase();
+
+                    // ถ้ามีคำค้นหาให้แสดง ถ้าไม่มีให้ซ่อน
+                    if (textContent.includes(searchTerm)) {
+                        card.style.display = 'flex'; // แสดงสินค้า
+                    } else {
+                        card.style.display = 'none'; // ซ่อนสินค้า
+                    }
+                });
+            }
+
+            // ค้นหาอัตโนมัติขณะพิมพ์
+            if (searchInput) {
+                searchInput.addEventListener('keyup', filterProducts);
+                searchInput.addEventListener('input', filterProducts);
+            }
+
+            // ค้นหาเมื่อคลิกปุ่ม
+            if (searchBtn) {
+                searchBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    filterProducts();
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
